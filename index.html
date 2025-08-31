@@ -135,8 +135,8 @@
    ========================= */
 const CONFIG = {
   TILE_SIZE: 24,            // tile size in canvas pixels (increase for larger sprites)
-  MAP_W: 64,                // map width in tiles
-  MAP_H: 48,                // map height in tiles
+  MAP_W: 128,                // map width in tiles
+  MAP_H: 128,                // map height in tiles
   SLIME_COUNT: 12,           // starting slimes on map
   XP_PER_SLIME: 6,
   COIN_PER_SLIME: 3,
@@ -640,7 +640,28 @@ function checkLevelUp(){
     beep(1200,0.16,'triangle');
   }
 }
+function startLevel(level) {
+  if (level % 5 === 0) {
+    spawnBossSlime();
+  } else {
+    drawSlime(level);
+  }
+}
 
+function spawnBossSlime() {
+  let bossSlime = {
+    x: 300, 
+    y: 200,
+    width: 64,
+    height: 64,
+    health: 50,  // more health than normal slime
+    speed: 1.5,  // maybe slower but stronger
+    color: "purple", // different look
+    damage: 4   // deals more damage
+  };
+
+  enemies.push(bossSlime);
+}
 /* =========================
    GAME OVER / RESTART
    ========================= */
